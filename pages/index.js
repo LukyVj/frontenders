@@ -123,15 +123,15 @@ const Home = () => {
             <li className="p-16 bgc-white">
               <h5 css={style.title}>Cool chats</h5>
             </li>
-            <li className="p-8 bgc-white">
+            <li className="p-16 bgc-white">
               <h5 css={style.title}>Development related channels</h5>
             </li>
-            <li className="p-8 bgc-white">
+            <li className="p-16 bgc-white">
               <h5 css={style.title}>
                 Bots ( Sidebar.io, Caniuse, Mdn and more )
               </h5>
             </li>
-            <li className="p-8 bgc-white">
+            <li className="p-16 bgc-white">
               <h5 css={style.title}>
                 A place to share your projects and get feedback
               </h5>
