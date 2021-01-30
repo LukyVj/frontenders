@@ -90,7 +90,7 @@ const Home = () => {
           >
             {" "}
             <Image src="/logo.png" width={62} height={62} className="mr-16" />
-            <h1 className="fsz-64 d-inline-block ml-16" css={style.title}>
+            <h1 className="md:fsz-64 d-inline-block ml-16" css={style.title}>
               Frontenders
             </h1>
           </div>
