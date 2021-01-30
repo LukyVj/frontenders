@@ -61,6 +61,13 @@ const Home = () => {
     setCatchPhrase(catchPhrases[randomCatch]);
   }, []);
 
+  const perks = [
+    "Cool chats",
+    "Development related channels",
+    "Bots ( Sidebar.io, Caniuse, Mdn and more )",
+    "A place to share your projects and get feedback",
+  ];
+
   return (
     <div className="">
       <Head>
@@ -120,22 +127,13 @@ const Home = () => {
               }
             `}
           >
-            <li className="p-16 bgc-white">
-              <h5 css={style.title}>Cool chats</h5>
-            </li>
-            <li className="p-16 bgc-white">
-              <h5 css={style.title}>Development related channels</h5>
-            </li>
-            <li className="p-16 bgc-white">
-              <h5 css={style.title}>
-                Bots ( Sidebar.io, Caniuse, Mdn and more )
-              </h5>
-            </li>
-            <li className="p-16 bgc-white">
-              <h5 css={style.title}>
-                A place to share your projects and get feedback
-              </h5>
-            </li>
+            {perks.map((perk) => {
+              return (
+                <li className="p-16 bgc-white d-flex ai-center jc-center">
+                  <h5 css={style.title}>{perk}</h5>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
@@ -145,7 +143,10 @@ const Home = () => {
               href="https://nextjs.org/docs"
               className="d-block tt-upper h-100p w-100p ph-16"
             >
-              <h3>Join us on Discord</h3>
+              <h3 className="d-flex ai-center jc-between">
+                Join us on{" "}
+                <Image src="/discord.svg" width={294 / 2} height={50} />
+              </h3>
             </a>
           </div>
         </div>
