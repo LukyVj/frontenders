@@ -81,7 +81,7 @@ const Home = () => {
           }
         `}
       >
-        <div className="pos-relative h-100vh d-flex ai-center jc-center">
+        <div className="pos-relative h-100vh d-flex ai-center jc-center p-32">
           <div
             className="d-flex ai-center"
             css={css`
@@ -120,7 +120,7 @@ const Home = () => {
               }
             `}
           >
-            <li className="p-8 bgc-white">
+            <li className="p-16 bgc-white">
               <h5 css={style.title}>Cool chats</h5>
             </li>
             <li className="p-8 bgc-white">
@@ -139,7 +139,7 @@ const Home = () => {
           </ul>
         </div>
 
-        <div className="pos-relative h-100vh d-flex ai-center jc-center">
+        <div className="pos-relative h-100vh d-flex ai-center jc-center p-32">
           <div className="d-flex bdw-1 bds-solid bdc-white bdr-4">
             <a
               href="https://nextjs.org/docs"
