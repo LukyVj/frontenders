@@ -39,28 +39,45 @@ main > div:after {
   left: 0;
   user-select: none;
   pointer-events: none;
-  background: radial-gradient(
-    rgba(255, 255, 255, 0.06),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0) 20%,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0) 30%,
-    rgba(255, 255, 255, 0.04),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0.03),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0) 50%,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.01),
-    rgba(255, 255, 255, 0)
-  );
+}
+
+main > div:before {
+  content: "⬇️";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  bottom: -102px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-0.125turn);
+  background-color: currentColor;
+  border-radius: 100%;
+  border: 2px solid white;
+  border-top-color: currentColor;
+  border-right-color: currentColor;
+  font-size: 2em;
+  z-index: 1;
+}
+main > div:last-of-type:before {
+  content: "👋";
+}
+
+@media (min-width: 960px) {
+  main > div:before {
+    content: "➡️";
+    top: 50%;
+    left: -102px;
+    transform: translateY(-50%) rotate(0.125turn);
+    border: 2px solid white;
+    border-top-color: currentColor;
+    border-right-color: currentColor;
+  }
+  main > div:nth-child(odd)::before {
+    display: none;
+  }
+  main > div:last-of-type:before {
+    content: "➡️";
+  }
 }

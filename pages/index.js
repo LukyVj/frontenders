@@ -11,8 +11,8 @@ const randomGradientColors = () => {
   };
 
   return [
-    `hsl(${randomInt(210, 225)},${randomInt(60, 80)}%,${randomInt(45, 55)}%)`,
-    `hsl(${randomInt(210, 225)},${randomInt(60, 80)}%,${randomInt(45, 65)}%)`,
+    `hsl(${randomInt(210, 225)},${randomInt(60, 90)}%,${randomInt(45, 55)}%)`,
+    `hsl(${randomInt(210, 225)},${randomInt(60, 90)}%,${randomInt(45, 65)}%)`,
   ];
 };
 
@@ -21,7 +21,7 @@ const randomColor = () => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  return `hsl(${randomInt(210, 225)},${randomInt(60, 80)}%,${randomInt(
+  return `hsl(${randomInt(210, 225)},${randomInt(60, 90)}%,${randomInt(
     45,
     55
   )}%)`;
@@ -54,7 +54,9 @@ const Home = () => {
   useEffect(() => {
     [...document.querySelectorAll("main > div:not(:first-of-type)")].map(
       (div) => {
-        div.style.backgroundColor = `${randomColor()}`;
+        const color = randomColor();
+        div.style.backgroundColor = `${color}`;
+        div.style.color = `${color}`;
       }
     );
 
@@ -62,10 +64,10 @@ const Home = () => {
   }, []);
 
   const perks = [
-    "Cool chats",
-    "Development related channels",
-    "Bots ( Sidebar.io, Caniuse, Mdn and more )",
-    "A place to share your projects and get feedback",
+    { icon: "😎", value: "Cool chats" },
+    { icon: "🛠", value: "Development related channels" },
+    { icon: "🤖", value: "Bots ( Sidebar.io, Caniuse, Mdn and more )" },
+    { icon: "📢", value: "A place to share your projects and get feedback" },
   ];
 
   return (
@@ -81,14 +83,14 @@ const Home = () => {
       </Head>
 
       <main
-        className="d-grid color-white ggap-2 fsz-24"
+        className="d-grid color-white fsz-24 ggap-2"
         css={css`
           @media (min-width: 960px) {
             grid-template-columns: repeat(2, minmax(10px, 2fr));
           }
         `}
       >
-        <div className="pos-relative h-100vh d-flex ai-center jc-center p-32">
+        <div className="pos-relative h-100vh d-flex ai-center jc-center p-64">
           <div
             className="d-flex ai-center"
             css={css`
@@ -103,42 +105,49 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="pos-relative h-100vh d-flex fxd-column ai-start jc-center p-32">
-          <h3>
-            You're interested by the front-end world and you want to find cool
-            people to talk with?
-          </h3>
+        <div className="pos-relative h-100vh d-flex fxd-column ai-start jc-center p-64">
+          <div className="color-white pos-relative z-2">
+            <h3>
+              You're interested by the front-end world and you want to find cool
+              people to talk with?
+            </h3>
 
-          <h3>
-            You're super-active and create tons of projects and wants to
-            hang-out with people with the same interest?
-          </h3>
+            <h3>
+              You're super-active and create tons of projects and wants to
+              hang-out with people with the same interest?
+            </h3>
 
-          <h3>Then this community is for you!</h3>
+            <h3>Then this community is for you!</h3>
+          </div>
         </div>
 
-        <div className="pos-relative h-100vh d-flex fxd-column ai-center jc-center p-32">
-          <p>You'll have access to</p>
-          <ul
-            className="d-grid lis-none tt-upper p-16 ggap-16 ta-center"
-            css={css`
-              @media (min-width: 960px) {
-                grid-template-columns: repeat(2, minmax(10px, 2fr));
-              }
-            `}
-          >
-            {perks.map((perk) => {
-              return (
-                <li className="p-16 bgc-white d-flex ai-center jc-center">
-                  <h5 css={style.title}>{perk}</h5>
-                </li>
-              );
-            })}
-          </ul>
+        <div className="pos-relative h-100vh d-flex fxd-column ai-center jc-center p-64">
+          <div className="color-white pos-relative z-2">
+            <p>You'll have access to</p>
+            <ul
+              className="d-grid lis-none tt-upper p-16 ggap-16 ta-center"
+              css={css`
+                @media (min-width: 960px) {
+                  grid-template-columns: repeat(2, minmax(10px, 2fr));
+                }
+              `}
+            >
+              {perks.map((perk) => {
+                return (
+                  <li className="p-16 bgc-white d-flex ai-start jc-start ta-left bdr-6 bxs-default">
+                    <span className="pr-16">{perk.icon}</span>
+                    <h5 className="p-0 m-0" css={style.title}>
+                      {perk.value}
+                    </h5>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
 
-        <div className="pos-relative h-100vh d-flex ai-center jc-center p-32">
-          <div className="d-flex bdw-1 bds-solid bdc-white bdr-4">
+        <div className="pos-relative h-100vh d-flex ai-center jc-center p-64">
+          <div className="d-flex bdw-1 bds-solid bdc-white bdr-4 color-white">
             <a
               href="https://nextjs.org/docs"
               className="d-block tt-upper h-100p w-100p ph-16"
