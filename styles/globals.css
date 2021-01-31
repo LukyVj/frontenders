@@ -39,6 +39,15 @@ main > div:after {
   left: 0;
   user-select: none;
   pointer-events: none;
+  background: url("/dots.svg") no-repeat center center / cover;
+  opacity: 0.6;
+  z-index: 0;
+}
+
+@media (min-width: 1200px) {
+  main > div:after {
+    background-size: contain;
+  }
 }
 
 main > div .marker {
@@ -64,6 +73,8 @@ main > div .marker:before {
   width: 100%;
   font-size: 1.5em;
   transform: rotate(0.125turn);
+  position: relative;
+  z-index: -1;
 }
 main > div:last-of-type .marker:before {
   content: "👋";
@@ -72,9 +83,9 @@ main > div:last-of-type .marker:before {
 @media (min-width: 960px) {
   main > div .marker {
     top: 50%;
-    left: -100px;
-    width: 200px;
-    height: 200px;
+    left: -60px;
+    width: 120px;
+    height: 120px;
     transform: translateY(-50%) rotate(0.125turn);
     border: 2px solid white;
     border-top-color: currentColor;

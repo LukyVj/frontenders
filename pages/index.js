@@ -4,6 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { css, jsx } from "@emotion/react";
+import DiscordSvg from "../components/DiscordSvg/DiscordSvg.js";
 
 const randomGradientColors = () => {
   const randomInt = (min, max) => {
@@ -52,14 +53,15 @@ const randomCatch = Math.floor(Math.random() * catchPhrases.length);
 const Home = () => {
   const [catchPhrase, setCatchPhrase] = useState("");
   useEffect(() => {
+    const color = randomColor();
+
     [...document.querySelectorAll("main > div:not(:first-of-type)")].map(
       (div) => {
-        const color = randomColor();
         div.style.backgroundColor = `${color}`;
         div.style.color = `${color}`;
       }
     );
-
+    // document.querySelector("main > div:last-of-type").style.color = color;
     setCatchPhrase(catchPhrases[randomCatch]);
   }, []);
 
@@ -93,7 +95,7 @@ const Home = () => {
         <div className="pos-relative h-100vh d-flex ai-center jc-center ph-24 pv-64 md:ph-48 lg:ph-64">
           <div className="marker" />
           <div
-            className="d-flex ai-center"
+            className="d-flex ai-center pos-relative z-1"
             css={css`
               filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
             `}
@@ -152,18 +154,28 @@ const Home = () => {
 
         <div className="pos-relative h-100vh d-flex ai-center jc-center ph-24 pv-64 md:ph-48 lg:ph-64">
           <div className="marker" />
-          <div className="d-flex bdw-1 bds-solid bdc-white bdr-4 color-white">
-            <a
-              href="https://nextjs.org/docs"
-              className="d-block tt-upper h-100p w-100p ph-16"
-            >
-              <h3 className="m-0 pv-8 d-flex ai-center jc-between fxd-column md:fxd-row">
-                <span className="d-inline-block mb-16 md:mr-8 md:mb-0">
-                  Join us on
-                </span>
-                <Image src="/discord.svg" width={294 / 2} height={50} />
-              </h3>
-            </a>
+          <div className="d-flex fxd-column color-current bgc-white pos-relative z-1 w-90p h-90p">
+            <div className="d-flex ai-start jc-between h-100p">
+              <div className="as-end d-flex ai-center jc-center w-100p p-16">
+                <a
+                  href="https://nextjs.org/docs"
+                  className="d-inline-block tt-upper ph-16 bdw-2 bdr-4 bds-solid bdc-current"
+                >
+                  <h3 className="m-0 pv-8 d-flex ai-center jc-between fxd-column md:fxd-row">
+                    <span className="d-inline-block mb-16 md:mr-8 md:mb-0">
+                      Join us on
+                    </span>
+                    <span>
+                      <DiscordSvg
+                        color="currentColor"
+                        width={294 / 2}
+                        height={50}
+                      />
+                    </span>
+                  </h3>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </main>
