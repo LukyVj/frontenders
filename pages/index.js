@@ -90,7 +90,8 @@ const Home = () => {
           }
         `}
       >
-        <div className="pos-relative h-100vh d-flex ai-center jc-center p-64">
+        <div className="pos-relative h-100vh d-flex ai-center jc-center ph-24 pv-64 md:ph-48 lg:ph-64">
+          <div className="marker" />
           <div
             className="d-flex ai-center"
             css={css`
@@ -105,7 +106,8 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="pos-relative h-100vh d-flex fxd-column ai-start jc-center p-64">
+        <div className="pos-relative h-100vh d-flex fxd-column ai-start jc-center ph-24 pv-64 md:ph-48 lg:ph-64">
+          <div className="marker" />
           <div className="color-white pos-relative z-2">
             <h3>
               You're interested by the front-end world and you want to find cool
@@ -121,13 +123,15 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="pos-relative h-100vh d-flex fxd-column ai-center jc-center p-64">
+        <div className="pos-relative h-100vh d-flex fxd-column ai-center jc-center ph-24 pv-64 md:ph-48 lg:ph-64">
+          <div className="marker" />
           <div className="color-white pos-relative z-2">
             <p>You'll have access to</p>
             <ul
-              className="d-grid lis-none tt-upper p-16 ggap-16 ta-center"
+              className="d-grid lis-none tt-upper ggap-16 ta-center p-0"
               css={css`
-                @media (min-width: 960px) {
+                grid-template-columns: repeat(1, minmax(10px, 2fr));
+                @media (min-width: 1200px) {
                   grid-template-columns: repeat(2, minmax(10px, 2fr));
                 }
               `}
@@ -146,14 +150,17 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="pos-relative h-100vh d-flex ai-center jc-center p-64">
+        <div className="pos-relative h-100vh d-flex ai-center jc-center ph-24 pv-64 md:ph-48 lg:ph-64">
+          <div className="marker" />
           <div className="d-flex bdw-1 bds-solid bdc-white bdr-4 color-white">
             <a
               href="https://nextjs.org/docs"
               className="d-block tt-upper h-100p w-100p ph-16"
             >
-              <h3 className="d-flex ai-center jc-between">
-                Join us on{" "}
+              <h3 className="m-0 pv-8 d-flex ai-center jc-between fxd-column md:fxd-row">
+                <span className="d-inline-block mb-16 md:mr-8 md:mb-0">
+                  Join us on
+                </span>
                 <Image src="/discord.svg" width={294 / 2} height={50} />
               </h3>
             </a>

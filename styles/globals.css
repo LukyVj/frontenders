@@ -41,15 +41,11 @@ main > div:after {
   pointer-events: none;
 }
 
-main > div:before {
-  content: "⬇️";
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  height: 200px;
+main > div .marker {
+  width: 100px;
+  height: 100px;
   position: absolute;
-  bottom: -102px;
+  bottom: -50px;
   left: 50%;
   transform: translateX(-50%) rotate(-0.125turn);
   background-color: currentColor;
@@ -57,27 +53,41 @@ main > div:before {
   border: 2px solid white;
   border-top-color: currentColor;
   border-right-color: currentColor;
-  font-size: 2em;
   z-index: 1;
 }
-main > div:last-of-type:before {
+main > div .marker:before {
+  content: "⬇️";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: 1.5em;
+  transform: rotate(0.125turn);
+}
+main > div:last-of-type .marker:before {
   content: "👋";
 }
 
 @media (min-width: 960px) {
-  main > div:before {
-    content: "➡️";
+  main > div .marker {
     top: 50%;
-    left: -102px;
+    left: -100px;
+    width: 200px;
+    height: 200px;
     transform: translateY(-50%) rotate(0.125turn);
     border: 2px solid white;
     border-top-color: currentColor;
     border-right-color: currentColor;
   }
-  main > div:nth-child(odd)::before {
+  main > div .marker:before {
+    content: "➡️";
+    transform: rotate(-0.125turn);
+  }
+  main > div:nth-child(odd) .marker {
     display: none;
   }
-  main > div:last-of-type:before {
+  main > div:last-of-type .marker:before {
     content: "➡️";
   }
 }
