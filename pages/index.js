@@ -154,7 +154,7 @@ const Home = () => {
 
         <div className="pos-relative h-100vh d-flex ai-center jc-center ph-24 pv-64 md:ph-48 lg:ph-64">
           <div className="marker" />
-          <div className="d-flex fxd-column color-current bgc-white pos-relative z-1 w-90p h-90p">
+          <div className="d-flex fxd-column color-current bgc-white pos-relative z-1 w-90p h-auto pv-32">
             <div className="d-flex ai-start jc-between h-100p">
               <div className="as-end d-flex ai-center jc-center w-100p p-16">
                 <a
