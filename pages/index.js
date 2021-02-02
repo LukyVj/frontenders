@@ -58,26 +58,28 @@ const DiscordEmbed = ({ data }) => {
       css={css`
         background-color: #7289da;
       `}
-      className="p-16 pv-32 color-white bdr-6 bxs-default"
+      className="p-32 color-white bdr-6 bxs-default"
     >
       <DiscordSvg color="currentColor" width={294 / 2} height={50} />
       <div className="d-grid md:g-2 ggap-16">
         <div>
-          <h4 className="m-0">{data.members} members</h4>
+          <h5 className="m-0">{data.members} members</h5>
         </div>
         <div>
-          <h4 className="m-0">{data.channels.length} channels, among them:</h4>
-          <ul className="lis-none m-0 p-0 pv-8">
+          <h5 className="m-0">
+            {data.channels.length} channels, here's a few:
+          </h5>
+          <ul className="lis-none m-0 p-0 pv-8 fsz-14">
             {getRandom(data.channels, 4).map((channel) => {
               return (
                 <li className="p-4">
                   <span
                     css={css`
-                      background: rgba(0, 0, 0, 0.2);
+                      background: #5365a5;
                     `}
                     className="d-inline-block h-100p ph-4 bdr-4"
                   >
-                    {channel.name}
+                    #{channel.name}
                   </span>
                 </li>
               );
@@ -85,16 +87,16 @@ const DiscordEmbed = ({ data }) => {
           </ul>
         </div>
         <div>
-          <h4 className="m-0">
-            {data.categories.length} channels, among them:
-          </h4>
-          <ul className="lis-none m-0 p-0 pv-8">
+          <h5 className="m-0">
+            {data.categories.length} categories, here's a few:
+          </h5>
+          <ul className="lis-none m-0 p-0 pv-8 fsz-14">
             {getRandom(data.categories, 4).map((channel) => {
               return (
                 <li className="p-4">
                   <span
                     css={css`
-                      background: rgba(0, 0, 0, 0.2);
+                      background: #5365a5;
                     `}
                     className="d-inline-block h-100p ph-4 bdr-4"
                   >
@@ -106,22 +108,24 @@ const DiscordEmbed = ({ data }) => {
           </ul>
         </div>
         <div>
-          <h4 className="m-0">{data.bots.length - 1} bots</h4>
-          <ul className="lis-none m-0 p-0 pv-8">
-            {data.bots.map((channel) => {
-              return (
-                <li className="p-4">
-                  <span
-                    css={css`
-                      background: rgba(0, 0, 0, 0.2);
-                    `}
-                    className="d-inline-block h-100p ph-4 bdr-4"
-                  >
-                    {channel.name}
-                  </span>
-                </li>
-              );
-            })}
+          <h5 className="m-0">{data.bots.length - 1} bots</h5>
+          <ul className="lis-none m-0 p-0 pv-8 fsz-14">
+            {data.bots
+              .filter((bot) => bot.name !== "frontenders-guild-api")
+              .map((channel) => {
+                return (
+                  <li className="p-4">
+                    <span
+                      css={css`
+                        background: #5365a5;
+                      `}
+                      className="d-inline-block h-100p ph-4 bdr-4"
+                    >
+                      <span>🤖</span> {channel.name}
+                    </span>
+                  </li>
+                );
+              })}
           </ul>
         </div>
       </div>
@@ -176,14 +180,18 @@ const Home = (props) => {
         <div className="pos-relative h-100vh d-flex ai-center jc-center ph-24 pv-64 md:ph-48 lg:ph-64">
           <div className="marker" />
           <div
-            className="d-flex fxd:column md:fxd-row ai-center pos-relative z-1"
+            className="d-flex fxd-column md:fxd-row ai-center pos-relative z-1"
             css={css`
-              filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
+              filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.3));
             `}
           >
-            {" "}
-            <Image src="/logo.png" width={62} height={62} className="mr-16" />
-            <h1 className="md:fsz-64 d-inline-block ml-16" css={style.title}>
+            <Image
+              src="/logo.png"
+              width={62}
+              height={62}
+              className="md:mr-16"
+            />
+            <h1 className="md:fsz-64 d-inline-block md:ml-16" css={style.title}>
               Frontenders
             </h1>
           </div>
@@ -210,7 +218,7 @@ const Home = (props) => {
           <div className="marker" />
           <div className="color-white pos-relative z-2">
             <p>You'll have access to</p>
-            <ul className="d-flex fxd-column lis-none tt-upper ta-center p-0 w-100p">
+            <ul className="d-flex fxd-column lis-none tt-upper ta-center p-0 w-90p">
               {perks.map((perk) => {
                 return (
                   <li className="p-16 bgc-white d-flex ai-start jc-start ta-left bdr-6 bxs-default mb-16">
