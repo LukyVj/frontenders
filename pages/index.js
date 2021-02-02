@@ -216,9 +216,9 @@ const Home = (props) => {
 
         <div className="pos-relative h-100vh d-flex fxd-column ai-center jc-center ph-24 pv-64 md:ph-48 lg:ph-64">
           <div className="marker" />
-          <div className="color-white pos-relative z-2">
+          <div className="color-white pos-relative z-2 ta-center md:ta-left">
             <p>You'll have access to</p>
-            <ul className="d-flex fxd-column lis-none tt-upper ta-center p-0 w-90p">
+            <ul className="d-flex fxd-column lis-none tt-upper ta-center p-0 md:w-90p">
               {perks.map((perk) => {
                 return (
                   <li className="p-16 bgc-white d-flex ai-start jc-start ta-left bdr-6 bxs-default mb-16">
