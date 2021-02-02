@@ -63,7 +63,7 @@ const DiscordEmbed = ({ data }) => {
       <DiscordSvg color="currentColor" width={294 / 2} height={50} />
       <div className="d-grid md:g-2 ggap-16">
         <div>
-          <h5 className="m-0">{data.members} members</h5>
+          <h5 className="m-0">{data.members - data.bots.length} members</h5>
         </div>
         <div>
           <h5 className="m-0">
