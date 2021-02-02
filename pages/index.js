@@ -293,7 +293,7 @@ export async function getStaticProps(ctx) {
   const discordApiData = await getDiscordData();
   return {
     props: {
-      discordApiData,
+      discordApiData: discordApiData ? discordApiData : null,
     }, // will be passed to the page component as props
   };
 }
