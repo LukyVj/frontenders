@@ -61,7 +61,7 @@ const DiscordEmbed = ({ data }) => {
       className="p-16 pv-32 color-white bdr-6 bxs-default"
     >
       <DiscordSvg color="currentColor" width={294 / 2} height={50} />
-      <div className="d-grid g-2 ggap-16">
+      <div className="d-grid md:g-2 ggap-16">
         <div>
           <h4 className="m-0">{data.members} members</h4>
         </div>
@@ -176,7 +176,7 @@ const Home = (props) => {
         <div className="pos-relative h-100vh d-flex ai-center jc-center ph-24 pv-64 md:ph-48 lg:ph-64">
           <div className="marker" />
           <div
-            className="d-flex ai-center pos-relative z-1"
+            className="d-flex fxd:column md:fxd-row ai-center pos-relative z-1"
             css={css`
               filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
             `}
