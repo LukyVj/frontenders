@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { css, jsx } from "@emotion/react";
 import DiscordSvg from "../components/DiscordSvg/DiscordSvg.js";
+import { getDiscordData } from "./api/discord";
+import { getRandom } from "../scripts/helpers.js";
 
 const randomGradientColors = () => {
   const randomInt = (min, max) => {
@@ -50,13 +52,90 @@ const catchPhrases = [
 
 const randomCatch = Math.floor(Math.random() * catchPhrases.length);
 
-const Home = () => {
+const DiscordEmbed = ({ data }) => {
+  return (
+    <div
+      css={css`
+        background-color: #7289da;
+      `}
+      className="p-16 pv-32 color-white bdr-6 bxs-default"
+    >
+      <DiscordSvg color="currentColor" width={294 / 2} height={50} />
+      <div className="d-grid g-2 ggap-16">
+        <div>
+          <h4 className="m-0">{data.members} members</h4>
+        </div>
+        <div>
+          <h4 className="m-0">{data.channels.length} channels, among them:</h4>
+          <ul className="lis-none m-0 p-0 pv-8">
+            {getRandom(data.channels, 4).map((channel) => {
+              return (
+                <li className="p-4">
+                  <span
+                    css={css`
+                      background: rgba(0, 0, 0, 0.2);
+                    `}
+                    className="d-inline-block h-100p ph-4 bdr-4"
+                  >
+                    {channel.name}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div>
+          <h4 className="m-0">
+            {data.categories.length} channels, among them:
+          </h4>
+          <ul className="lis-none m-0 p-0 pv-8">
+            {getRandom(data.categories, 4).map((channel) => {
+              return (
+                <li className="p-4">
+                  <span
+                    css={css`
+                      background: rgba(0, 0, 0, 0.2);
+                    `}
+                    className="d-inline-block h-100p ph-4 bdr-4"
+                  >
+                    {channel.name}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div>
+          <h4 className="m-0">{data.bots.length - 1} bots</h4>
+          <ul className="lis-none m-0 p-0 pv-8">
+            {data.bots.map((channel) => {
+              return (
+                <li className="p-4">
+                  <span
+                    css={css`
+                      background: rgba(0, 0, 0, 0.2);
+                    `}
+                    className="d-inline-block h-100p ph-4 bdr-4"
+                  >
+                    {channel.name}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Home = (props) => {
   const [catchPhrase, setCatchPhrase] = useState("");
   useEffect(() => {
-    const color = randomColor();
-
-    [...document.querySelectorAll("main > div:not(:first-of-type)")].map(
+    [...document.querySelectorAll("main > div:not(:first-child)")].map(
       (div) => {
+        const color = randomColor();
+
         div.style.backgroundColor = `${color}`;
         div.style.color = `${color}`;
       }
@@ -64,6 +143,8 @@ const Home = () => {
     // document.querySelector("main > div:last-of-type").style.color = color;
     setCatchPhrase(catchPhrases[randomCatch]);
   }, []);
+
+  console.log(props);
 
   const perks = [
     { icon: "😎", value: "Cool chats" },
@@ -129,22 +210,14 @@ const Home = () => {
           <div className="marker" />
           <div className="color-white pos-relative z-2">
             <p>You'll have access to</p>
-            <ul
-              className="d-grid lis-none tt-upper ggap-16 ta-center p-0"
-              css={css`
-                grid-template-columns: repeat(1, minmax(10px, 2fr));
-                @media (min-width: 1200px) {
-                  grid-template-columns: repeat(2, minmax(10px, 2fr));
-                }
-              `}
-            >
+            <ul className="d-flex fxd-column lis-none tt-upper ta-center p-0 w-100p">
               {perks.map((perk) => {
                 return (
-                  <li className="p-16 bgc-white d-flex ai-start jc-start ta-left bdr-6 bxs-default">
+                  <li className="p-16 bgc-white d-flex ai-start jc-start ta-left bdr-6 bxs-default mb-16">
                     <span className="pr-16">{perk.icon}</span>
-                    <h5 className="p-0 m-0" css={style.title}>
+                    <h4 className="p-0 m-0 color-black" css={style.title}>
                       {perk.value}
-                    </h5>
+                    </h4>
                   </li>
                 );
               })}
@@ -152,6 +225,39 @@ const Home = () => {
           </div>
         </div>
 
+        <div className="pos-relative h-100vh d-flex ai-center jc-center ph-24 pv-64 md:ph-48 lg:ph-64">
+          <div className="marker" />
+          <div className="d-flex fxd-column color-current pos-relative z-1 w-90p h-auto ">
+            <DiscordEmbed data={props.discordApiData} />
+          </div>
+        </div>
+
+        <div className="pos-relative h-100vh d-flex ai-center jc-center ph-24 pv-64 md:ph-48 lg:ph-64">
+          <div className="marker" />
+          <div className="d-flex fxd-column color-current bgc-white pos-relative z-1 w-90p h-auto pv-32">
+            <div className="d-flex ai-start jc-between h-100p">
+              <div className="as-end d-flex ai-center jc-center w-100p p-16">
+                <a
+                  href="https://nextjs.org/docs"
+                  className="d-inline-block tt-upper ph-16 bdw-2 bdr-4 bds-solid bdc-current"
+                >
+                  <h3 className="m-0 pv-8 d-flex ai-center jc-between fxd-column md:fxd-row">
+                    <span className="d-inline-block mb-16 md:mr-8 md:mb-0">
+                      Join us on
+                    </span>
+                    <span>
+                      <DiscordSvg
+                        color="currentColor"
+                        width={294 / 2}
+                        height={50}
+                      />
+                    </span>
+                  </h3>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="pos-relative h-100vh d-flex ai-center jc-center ph-24 pv-64 md:ph-48 lg:ph-64">
           <div className="marker" />
           <div className="d-flex fxd-column color-current bgc-white pos-relative z-1 w-90p h-auto pv-32">
@@ -182,5 +288,14 @@ const Home = () => {
     </div>
   );
 };
+
+export async function getStaticProps(ctx) {
+  const discordApiData = await getDiscordData();
+  return {
+    props: {
+      discordApiData,
+    }, // will be passed to the page component as props
+  };
+}
 
 export default Home;
